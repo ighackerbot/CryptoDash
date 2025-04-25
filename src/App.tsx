@@ -23,14 +23,7 @@ function App() {
                 </div>
               </div>
               <div className="flex items-center">
-                <a
-                  href="https://www.coingecko.com/api"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-500 hover:text-gray-700 text-sm"
-                >
-                  Powered by CoinGecko
-                </a>
+                
               </div>
             </div>
           </div>
