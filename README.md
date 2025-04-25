@@ -25,6 +25,78 @@ A modern, real-time cryptocurrency dashboard built with React and Redux Toolkit,
 - **Icons**: Lucide React
 - **Real-time Updates**: WebSocket simulation
 
+## Workflow
+
+### Application Architecture
+
+```mermaid
+graph TD
+    A[User Interface] --> B[React Components]
+    B --> C[Redux Store]
+    C --> D[API Services]
+    D --> E[CoinGecko API]
+    
+    subgraph Components
+        B --> F[Navigation]
+        B --> G[CryptoTable]
+        B --> H[CryptoComparison]
+        B --> I[MarketHeader]
+    end
+    
+    subgraph State Management
+        C --> J[Assets Slice]
+        C --> K[UI Slice]
+        C --> L[Comparison Slice]
+    end
+    
+    subgraph Data Flow
+        D --> M[WebSocket Service]
+        D --> N[API Service]
+        M --> C
+        N --> C
+    end
+```
+
+### Component Interaction
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant UI as React Components
+    participant Store as Redux Store
+    participant API as API Services
+    
+    User->>UI: Interact with Dashboard
+    UI->>Store: Dispatch Action
+    Store->>API: Request Data
+    API->>Store: Update State
+    Store->>UI: Re-render Components
+    UI->>User: Display Updated Data
+    
+    loop Real-time Updates
+        API->>Store: WebSocket Updates
+        Store->>UI: Update Prices
+        UI->>User: Show Price Changes
+    end
+```
+
+### Data Flow
+
+```mermaid
+stateDiagram-v2
+    [*] --> Loading
+    Loading --> Error: API Error
+    Loading --> Ready: Data Loaded
+    Ready --> Filtering: User Search
+    Ready --> Sorting: User Sort
+    Ready --> Comparing: Select Cryptos
+    Filtering --> Ready: Clear Search
+    Sorting --> Ready: Reset Sort
+    Comparing --> Ready: Close Comparison
+    Ready --> Updating: WebSocket Update
+    Updating --> Ready: Update Complete
+```
+
 ## Pages
 
 1. **Dashboard** (`/`)
