@@ -29,34 +29,6 @@ A modern, real-time cryptocurrency dashboard built with React and Redux Toolkit,
 
 ### Application Architecture
 
-```mermaid
-graph TD
-    A[User Interface] --> B[React Components]
-    B --> C[Redux Store]
-    C --> D[API Services]
-    D --> E[CoinGecko API]
-    
-    subgraph Components
-        B --> F[Navigation]
-        B --> G[CryptoTable]
-        B --> H[CryptoComparison]
-        B --> I[MarketHeader]
-    end
-    
-    subgraph State Management
-        C --> J[Assets Slice]
-        C --> K[UI Slice]
-        C --> L[Comparison Slice]
-    end
-    
-    subgraph Data Flow
-        D --> M[WebSocket Service]
-        D --> N[API Service]
-        M --> C
-        N --> C
-    end
-```
-
 ### Component Interaction
 
 ```mermaid
